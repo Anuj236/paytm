@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://localhost:27017/paytm")
+mongoose.connect("mongodb://localhost:27017/paytm?directConnection=true").then(()=>{
+    console.error("DB connected")}).catch((err)=>{
+        console.log("Error connecting to DB",err.message)
+    })
+
 
 const userSchema = new mongoose.Schema({
     username: {
