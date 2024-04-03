@@ -2,28 +2,35 @@ const express = require('express')
 const router = express.Router();
 const zod = require('zod')
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET} = require('../config')
 const {User} = require('../db')
 const {Account} = require("../db")
 const {authMiddleware} = require("../middleware")
 
+require('dotenv').config()
+
 const signupBody = zod.object({
-    username:zod.string().email(),
-    password:zod.string(),
     firstname:zod.string(),
-    lastname:zod.string()
+    lastname:zod.string(),
+    username:zod.string().email(),
+    password:zod.string()
 })
 
 router.post('/signup',async(req,res)=> {
-    const {success} = signupBody.safeParse(req.body)
+    const {success,error} = signupBody.safeParse(req.body)
+    console.log(success)
+
+    if(error){
+        console.log(error)
+    } 
+
     if(!success){
         return res.status(411).json({
             message: "Email already taken / Incorrect inputs"
         })
-    }
+    } 
 
     const existingUser = await User.findOne({
-        username:req.body.username
+        username:req.body?.username 
     })
 
     if(existingUser){
@@ -46,7 +53,7 @@ router.post('/signup',async(req,res)=> {
         balance : 1+Math.random()*1000
     })
     
-    const token = jwt.sign({userId},JWT_SECRET)
+    const token = jwt.sign({userId},process.env.JWT_SECRET)
     
     res.json({
         message: "User created successfully",
@@ -105,7 +112,7 @@ router.put("/",authMiddleware,async(req,res) => {
     }
 
     await User.updateOne({
-        _id: req.userId
+        id: req.userId
     },req.body)
 
     res.json({
@@ -131,8 +138,8 @@ router.get("/bulk", async (req, res) => {
     res.json({
         user: users.map(user => ({
             username: user.username,
-            firstName: user.firstname,
-            lastName: user.lastname,
+            firstname: user.firstname,
+            lastname: user.lastname,
             _id: user._id
         }))
     })

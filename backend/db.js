@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://localhost:27017/paytm?directConnection=true").then(()=>{
+require('dotenv').config()
+
+mongoose.connect(process.env.MONGOURL).then(()=>{
     console.error("DB connected")}).catch((err)=>{
         console.log("Error connecting to DB",err.message)
     })
