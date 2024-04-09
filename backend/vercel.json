@@ -1,23 +1,5 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "backend/package.json",
-        "use": "@vercel/node",
-        "config": {
-          "serverFiles": [
-            "backend/**"
-          ],
-          "includeFiles": [
-            "backend/**"
-          ]
-        }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "backend/$1"
-      }
+    "rewrites": [
+        {"source": "/(.*)", "destination": "/"}
     ]
-  }
+}
