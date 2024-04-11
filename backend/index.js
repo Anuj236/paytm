@@ -4,7 +4,7 @@ const cors = require('cors')
 const app = express();
 
 app.use(cors({
-    origin:"https://paytm-client.vercel.app"
+    origin:"*"
 }))
 app.use(express.json())
 app.use("/",(req,res)=>{
