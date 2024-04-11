@@ -4,7 +4,7 @@ const zod = require('zod')
 const jwt = require('jsonwebtoken')
 const {User} = require('../../db')
 const {Account} = require("../../db")
-const {authMiddleware} = require("../../middleware")
+const {authMiddleware} = require("../middleware")
 
 require('dotenv').config()
 
