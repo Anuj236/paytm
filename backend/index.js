@@ -3,7 +3,9 @@ const rootRouter = require("./src/routes/index")
 const cors = require('cors')
 const app = express();
 
-app.use(cors())
+app.use(cors({
+    origin:"http://paytmpe.vercel.app"
+}))
 app.use(express.json())
 app.use("/",(req,res)=>{
     res.send("Welcome to the Paytm Server")
