@@ -1,11 +1,9 @@
 const express = require("express");
-const rootRouter = require("./routes/index")
+const rootRouter = require("./src/routes/index")
 const cors = require('cors')
 const app = express();
 
-app.use(cors({
-    origin:"*"
-}))
+app.use(cors())
 app.use(express.json())
 app.use("/",(req,res)=>{
     res.send("Welcome to the Paytm Server")
