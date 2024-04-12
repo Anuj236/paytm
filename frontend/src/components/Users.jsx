@@ -8,9 +8,10 @@ import PropTypes from "prop-types";
 export const Users = () => {
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
+    const baseurl = import.meta.env.VITE_API_BASE_URL
 
     useEffect(() => {
-        axios.get("https://paytm-api.vercel.app/api/v1/user/bulk?filter=" + filter)
+        axios.get(`${baseurl}/api/v1/user/bulk?filter=` + filter)
             .then(response => {
                 if (response.data && response.data.user) {
                     setUsers(response.data.user)
@@ -18,8 +19,6 @@ export const Users = () => {
                 }
             })
     }, [filter])
-
-    console.log(users)
 
     return <>
         <div className="font-bold mt-6 text-lg">

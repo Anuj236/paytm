@@ -4,9 +4,17 @@ const cors = require('cors')
 const app = express();
 
 app.use(cors({
-    origin:"http://paytmpe.vercel.app"
-}))
+    origin: '*',
+    methods: ['GET', 'POST','PUT'],
+    credentials: true,
+  }))
 app.use(express.json())
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
 app.use("/",(req,res)=>{
     res.send("Welcome to the Paytm Server")
 

@@ -9,6 +9,7 @@ export const SendMoney = () => {
     const name = searchParams.get("name");
     const [amount, setAmount] = useState(0);
     const navigate = useNavigate()
+    const baseurl = import.meta.env.VITE_API_BASE_URL
 
     return <div className="flex justify-center h-screen bg-gray-100">
         <div className="h-full flex flex-col justify-center">
@@ -44,7 +45,7 @@ export const SendMoney = () => {
                     />
                     </div>
                     <button onClick={() => {
-                        axios.post("https://paytm-api.vercel.app/api/v1/accounts/transfer", {
+                        axios.post(`${baseurl}/api/v1/accounts/transfer`, {
                             to: id,
                             amount
                         }, {

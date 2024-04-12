@@ -13,6 +13,7 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const baseurl = import.meta.env.VITE_API_BASE_URL
 
   return <div className="bg-slate-300 h-screen flex justify-center">
     <div className="flex flex-col justify-center">
@@ -33,7 +34,7 @@ export const Signup = () => {
         }} placeholder="" label={"Password"} />
         <div className="pt-4">
           <Button onClick={async () => {
-            const response = await axios.post("https://paytm-api.vercel.app/api/v1/user/signup", {
+            const response = await axios.post(`${baseurl}/api/v1/user/signup`, {
               username,
               firstname,
               lastname,
