@@ -15,7 +15,6 @@ export const Users = () => {
             .then(response => {
                 if (response.data && response.data.user) {
                     setUsers(response.data.user)
-                    console.log(response.data.user)
                 }
             })
     }, [filter])

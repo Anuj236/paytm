@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState} from "react"
 import { BottomWarning } from "../components/BottomWarning"
 import { Button } from "../components/Button"
 import { Heading } from "../components/Heading"
@@ -40,7 +40,6 @@ export const Signup = () => {
               lastname,
               password
             });
-            console.log(response )
             localStorage.setItem("token", response.data.token)
             navigate("/dashboard")
           }} label={"Sign up"} />

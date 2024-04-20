@@ -41,7 +41,7 @@ router.post("/transfer",authMiddleware,async(req,res) => {
 
     await session.commitTransaction();
     res.json({
-        message: "Transfer successful"
+        message: "Transfer successful\uD83D\uDE00"
     });
 });
 
